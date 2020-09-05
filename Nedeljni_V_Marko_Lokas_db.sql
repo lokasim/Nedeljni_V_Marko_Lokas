@@ -65,6 +65,7 @@ CREATE TABLE tblFriendRequest(
 
 CREATE TABLE tblPost(
 	PostID					int identity(1,1) NOT NULL,
+	PostText				nvarchar(100) NOT NULL,
 	UserPost				int NOT NULL,
 	DateTimePost			datetime NOT NULL,
 	VisiblePost				int NOT NULL

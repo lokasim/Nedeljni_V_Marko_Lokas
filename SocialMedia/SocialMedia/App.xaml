@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:SocialMedia"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             StartupUri="Views/Login.xaml">
-             <!--StartupUri="MainWindow.xaml">-->
+             StartupUri="MainWindow.xaml">
+    <!--StartupUri="Views/Login.xaml">-->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

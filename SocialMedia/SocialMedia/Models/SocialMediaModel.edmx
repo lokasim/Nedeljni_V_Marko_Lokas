@@ -19,6 +19,7 @@
             <PropertyRef Name="PostID" />
           </Key>
           <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostText" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserPost" Type="int" Nullable="false" />
           <Property Name="DateTimePost" Type="datetime" Nullable="false" />
           <Property Name="VisiblePost" Type="int" Nullable="false" />
@@ -153,6 +154,7 @@
             <PropertyRef Name="PostID" />
           </Key>
           <Property Name="PostID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserPost" Type="Int32" Nullable="false" />
           <Property Name="DateTimePost" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="VisiblePost" Type="Int32" Nullable="false" />
@@ -294,6 +296,7 @@
             <EntityTypeMapping TypeName="BetweenUsModel.tblPost">
               <MappingFragment StoreEntitySet="tblPost">
                 <ScalarProperty Name="PostID" ColumnName="PostID" />
+                <ScalarProperty Name="PostText" ColumnName="PostText" />
                 <ScalarProperty Name="UserPost" ColumnName="UserPost" />
                 <ScalarProperty Name="DateTimePost" ColumnName="DateTimePost" />
                 <ScalarProperty Name="VisiblePost" ColumnName="VisiblePost" />

@@ -15,6 +15,7 @@
       <EntityTypeMapping TypeName="BetweenUsModel.tblPost">
         <MappingFragment StoreEntitySet="tblPost">
           <ScalarProperty Name="PostID" ColumnName="PostID" />
+          <ScalarProperty Name="PostText" ColumnName="PostText" />
           <ScalarProperty Name="UserPost" ColumnName="UserPost" />
           <ScalarProperty Name="DateTimePost" ColumnName="DateTimePost" />
           <ScalarProperty Name="VisiblePost" ColumnName="VisiblePost" />

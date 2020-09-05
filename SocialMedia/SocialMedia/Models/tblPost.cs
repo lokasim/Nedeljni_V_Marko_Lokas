@@ -21,6 +21,7 @@ namespace SocialMedia.Models
         }
     
         public int PostID { get; set; }
+        public string PostText { get; set; }
         public int UserPost { get; set; }
         public System.DateTime DateTimePost { get; set; }
         public int VisiblePost { get; set; }

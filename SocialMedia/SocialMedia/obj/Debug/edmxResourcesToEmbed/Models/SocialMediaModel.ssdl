@@ -14,6 +14,7 @@
       <PropertyRef Name="PostID" />
     </Key>
     <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostText" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="UserPost" Type="int" Nullable="false" />
     <Property Name="DateTimePost" Type="datetime" Nullable="false" />
     <Property Name="VisiblePost" Type="int" Nullable="false" />

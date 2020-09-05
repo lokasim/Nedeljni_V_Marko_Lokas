@@ -116,12 +116,12 @@
       <DependentUpon>SocialMediaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\Service.cs" />
+    <Compile Include="ViewModels\LoggedGuest.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MainWidnowViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Vezba.xaml.cs">
-      <DependentUpon>Vezba.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -136,10 +136,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\Login.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Vezba.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -178,12 +174,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\SocialMediaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SocialMediaModel.Context.cs</LastGenOutput>
       <DependentUpon>SocialMediaModel.edmx</DependentUpon>
+      <LastGenOutput>SocialMediaModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\SocialMediaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

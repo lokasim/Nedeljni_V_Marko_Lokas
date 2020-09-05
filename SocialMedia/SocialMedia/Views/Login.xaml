@@ -51,8 +51,35 @@
                            FontWeight="Light">Sve ostaje između nas</TextBlock>
             </StackPanel>
         </Grid>
+        
         <Grid Grid.Column="1"
               Background="#FAFAFA">
+            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                    IsCancel="True"
+                    Foreground="Red"
+                    Margin="0 3 -3 0"
+                    VerticalAlignment="Top"
+                    Click="Exit_Click"
+                    Command="{Binding Exit, UpdateSourceTrigger=PropertyChanged}"
+                    HorizontalAlignment="Right">
+                <Button.CommandParameter>
+                    <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
+                </Button.CommandParameter>
+                <materialDesign:PackIcon Kind="Close"
+                                         Height="16"
+                                         Width="16" />
+            </Button>
+            <TextBlock x:Name="tbCapsLock"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       TextWrapping="Wrap"
+                       MaxWidth="200"
+                       HorizontalAlignment="Center"
+                       Margin="0,45,0,0"
+                       Foreground="Red"
+                       FontWeight="Light"
+                       Visibility="Collapsed"
+                       Text="Neka poruka!"></TextBlock>
             <StackPanel>
                 <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
                          x:Name="txtUsername"
@@ -62,6 +89,9 @@
                          TextWrapping="Wrap"
                          MaxWidth="200"
                          BorderBrush="#003585"
+                         TextChanged="TxtUsername_TextChanged"
+                         PreviewKeyDown="TxtBox_PreviewKeyDown"
+                         PreviewTextInput="PreviewTextInputHandlerMala"
                          FontSize="16"
                          MaxLength="20"
                          Height="45"
@@ -74,8 +104,11 @@
                              VerticalAlignment="Center"
                              MaxWidth="200"
                              Margin="0 25 0 0"
-                             FontSize="16"
+                             FontSize="14"
                              Height="45"
+                             PasswordChanged="TxtPassword_PasswordChanged"
+                             PreviewKeyDown="TxtBox_PreviewKeyDown"
+                             PreviewTextInput="PreviewTextInputHandlerVelika"
                              MaxLength="20"
                              ToolTip="Unesite lozinku (minimum 6 karaktera)"
                              BorderBrush="#003585"
@@ -84,6 +117,7 @@
                              materialDesign:HintAssist.Hint="Lozinka" />
                 <Button Style="{StaticResource MaterialDesignRaisedButton}"
                         Height="45"
+                        x:Name="btnLogin"
                         MaxWidth="200"
                         Margin="0 25 0 0"
                         Background="#149DE1"
@@ -91,6 +125,7 @@
                         Foreground="#FAFAFA"
                         BorderBrush="#149DE1"
                         materialDesign:ButtonAssist.CornerRadius="5"
+                        Command="{Binding LoginUser, UpdateSourceTrigger=PropertyChanged}"
                         ToolTip="Prijavite se">
                     <TextBlock Text="Prijavite se" />
                 </Button>
@@ -101,15 +136,15 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center">
                     <materialDesign:DialogHost.DialogContent>
-                        <StackPanel 
-                                    Width="250"
-                                    Height="350" Margin="5"
+                        <StackPanel Width="250"
+                                    Height="350"
+                                    Margin="5"
                                     Background="#FAFAFA">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock FontSize="25"
                                            FontWeight="Bold"
                                            Foreground="#FEBA02"
-                                           Margin="10">
+                                           Margin="10 0 0 10">
       Registrujte se</TextBlock>
                                 <Button Style="{StaticResource MaterialDesignFlatButton}"
                                         IsCancel="True"
@@ -143,6 +178,9 @@
                                              AcceptsReturn="True"
                                              TextWrapping="Wrap"
                                              BorderBrush="#003585"
+                                             TextChanged="TxtName_TextChanged"
+                                             PreviewKeyDown="TxtBox_PreviewKeyDown"
+                                             PreviewTextInput="PreviewTextInputHandlerVelika"
                                              FontSize="14"
                                              MaxLength="20"
                                              Padding="0 0 0 -5"
@@ -160,6 +198,9 @@
                                              AcceptsReturn="True"
                                              TextWrapping="Wrap"
                                              BorderBrush="#003585"
+                                             TextChanged="TxtSurname_TextChanged"
+                                             PreviewKeyDown="TxtBox_PreviewKeyDown"
+                                             PreviewTextInput="PreviewTextInputHandlerVelika"
                                              FontSize="14"
                                              MaxLength="20"
                                              Padding="0 0 0 -5"
@@ -178,6 +219,9 @@
                                          TextWrapping="Wrap"
                                          Padding="0 0 0 -5"
                                          BorderBrush="#003585"
+                                         TextChanged="TxtUsernameRegistration_TextChanged"
+                                         PreviewKeyDown="TxtBox_PreviewKeyDown"
+                                         PreviewTextInput="PreviewTextInputHandlerMala"
                                          FontSize="14"
                                          MaxLength="20"
                                          Height="40"
@@ -192,6 +236,9 @@
                                              Margin="0 10 0 0"
                                              FontSize="14"
                                              Height="40"
+                                             PasswordChanged="TxtPasswordRegistration_PasswordChanged"
+                                             PreviewKeyDown="TxtBox_PreviewKeyDown"
+                                             PreviewTextInput="PreviewTextInputHandlerVelika"
                                              MaxLength="20"
                                              ToolTip="Unesite lozinku (minimum 6 karaktera)"
                                              BorderBrush="#003585"
@@ -199,21 +246,25 @@
                                              Foreground="#003585"
                                              materialDesign:HintAssist.Hint="Lozinka" />
                                 <StackPanel Orientation="Horizontal"
-                                            Margin="10 10">
-                                    <DatePicker Name="LocaleDatePicker"
+                                            Margin="10 5">
+                                    <DatePicker x:Name="dpDateOfBirth"
                                                 Width="110"
                                                 Height="40"
                                                 Margin="0 0 10 0"
                                                 FontSize="14"
+                                                Text="{Binding User.DateOfBirth, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                                SelectedDateChanged="DpDateOfBirth_SelectedDateChanged"
+                                                ToolTip="Zabranjeno osobama ispod 18 godina."
                                                 BorderBrush="#003585"
                                                 Background="#FAFAFA"
                                                 Foreground="#003585"
                                                 materialDesign:HintAssist.Hint="Datum rođenja" />
-                                    <ComboBox x:Name="cbxRecipeTypes"
+                                    <ComboBox x:Name="cbxGendre"
                                               materialDesign:HintAssist.Hint="Pol"
                                               Width="110"
                                               Height="40"
                                               FontSize="14"
+                                              SelectionChanged="CbxGendre_SelectionChanged"
                                               BorderBrush="#003585"
                                               Background="#FAFAFA"
                                               Foreground="#003585"
@@ -224,16 +275,28 @@
                                               SelectedValuePath="Content">
                                         <ComboBoxItem Content="Muško"></ComboBoxItem>
                                         <ComboBoxItem Content="Žensko"></ComboBoxItem>
-                                        <ComboBoxItem Content="Ne želim da se izjasnim"></ComboBoxItem>
+                                        <ComboBoxItem Content="Ostalo"></ComboBoxItem>
                                     </ComboBox>
                                 </StackPanel>
+                                <TextBlock FontSize="9.5"
+                                           Margin="10 0"
+                                           TextWrapping="Wrap">Ako kliknete na dugme Registrujte se, prihvatate naše</TextBlock>
+                                <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                        IsDefault="True"
+                                        Margin="-6 -10 0 0"
+                                        FontSize="9.5"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Left"
+                                        Foreground="#FEBA02">uslove korišćenja.
+                                </Button>
                                 <StackPanel Orientation="Horizontal"
                                             HorizontalAlignment="Center">
                                     <Button Style="{StaticResource MaterialDesignFlatButton}"
                                             IsDefault="True"
-                                            Margin="0 8 8 0"
+                                            Margin="0 -5 0 0"
                                             Foreground="#003585"
-                                            Command="materialDesign:DialogHost.CloseDialogCommand">
+                                            x:Name="btnRegistration"
+                                            Command="{Binding RegistrationUser, UpdateSourceTrigger=PropertyChanged}">
                                         <Button.CommandParameter>
                                             <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">True</system:Boolean>
                                         </Button.CommandParameter> Registrujte se
