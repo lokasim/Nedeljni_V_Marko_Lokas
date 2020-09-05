@@ -36,3 +36,12 @@ C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debu
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia.csproj.CopyComplete
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia.exe
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia.pdb
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\Views\Login.g.cs
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia_Content.g.cs
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\EntityFramework.dll
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\EntityFramework.xml
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\Views\Login.baml
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\Views\Vezba.g.cs
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\Views\Vezba.baml

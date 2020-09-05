@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BetweenUsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblFriendRequest">
+    <Key>
+      <PropertyRef Name="FriendRequestID" />
+    </Key>
+    <Property Name="FriendRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserSent" Type="int" Nullable="false" />
+    <Property Name="UserReceived" Type="int" Nullable="false" />
+    <Property Name="FriendRequestStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPost">
+    <Key>
+      <PropertyRef Name="PostID" />
+    </Key>
+    <Property Name="PostID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserPost" Type="int" Nullable="false" />
+    <Property Name="DateTimePost" Type="datetime" Nullable="false" />
+    <Property Name="VisiblePost" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPostLike">
+    <Key>
+      <PropertyRef Name="PostLikeID" />
+    </Key>
+    <Property Name="PostLikeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PostLike" Type="int" Nullable="false" />
+    <Property Name="UserLike" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserUsername" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="VisibleDate" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="VisibleGender" Type="int" Nullable="false" />
+    <Property Name="LastSeen" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Post_User">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblPost" Type="Self.tblPost" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblPost">
+        <PropertyRef Name="UserPost" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostLike_Post">
+    <End Role="tblPost" Type="Self.tblPost" Multiplicity="1" />
+    <End Role="tblPostLike" Type="Self.tblPostLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPost">
+        <PropertyRef Name="PostID" />
+      </Principal>
+      <Dependent Role="tblPostLike">
+        <PropertyRef Name="PostLike" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PostLike_User">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblPostLike" Type="Self.tblPostLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblPostLike">
+        <PropertyRef Name="UserLike" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Received_User">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblFriendRequest" Type="Self.tblFriendRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblFriendRequest">
+        <PropertyRef Name="UserReceived" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sent_User">
+    <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblFriendRequest" Type="Self.tblFriendRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblFriendRequest">
+        <PropertyRef Name="UserSent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BetweenUsModelStoreContainer">
+    <EntitySet Name="tblFriendRequest" EntityType="Self.tblFriendRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPost" EntityType="Self.tblPost" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPostLike" EntityType="Self.tblPostLike" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Post_User" Association="Self.FK_Post_User">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblPost" EntitySet="tblPost" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostLike_Post" Association="Self.FK_PostLike_Post">
+      <End Role="tblPost" EntitySet="tblPost" />
+      <End Role="tblPostLike" EntitySet="tblPostLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PostLike_User" Association="Self.FK_PostLike_User">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblPostLike" EntitySet="tblPostLike" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Received_User" Association="Self.FK_Received_User">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblFriendRequest" EntitySet="tblFriendRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sent_User" Association="Self.FK_Sent_User">
+      <End Role="tblUser" EntitySet="tblUser" />
+      <End Role="tblFriendRequest" EntitySet="tblFriendRequest" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
