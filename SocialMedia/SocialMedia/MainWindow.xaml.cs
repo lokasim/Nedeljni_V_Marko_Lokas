@@ -1,20 +1,11 @@
 ﻿using SocialMedia.ViewModels;
 using SocialMedia.Views;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SocialMedia
 {
@@ -120,7 +111,7 @@ namespace SocialMedia
 
         private void BtnSeeMore_Click(object sender, RoutedEventArgs e)
         {
-            if(MoreInformation.Visibility == Visibility.Collapsed)
+            if (MoreInformation.Visibility == Visibility.Collapsed)
             {
                 MoreInformation.Visibility = Visibility.Visible;
                 btnSeeMore.Visibility = Visibility.Collapsed;
@@ -141,9 +132,9 @@ namespace SocialMedia
                 usernamePnl.Visibility = Visibility.Collapsed;
                 imeprezimepnl.Visibility = Visibility.Visible;
             }
-            else if(cbxSearch.SelectedIndex.ToString() == "1".ToString())
+            else if (cbxSearch.SelectedIndex.ToString() == "1".ToString())
             {
-                
+
                 usernamePnl.Visibility = Visibility.Visible;
                 imeprezimepnl.Visibility = Visibility.Collapsed;
             }
@@ -231,7 +222,7 @@ namespace SocialMedia
 
         private void Flipper_IsFlippedChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
         {
-            
+
         }
     }
 }

@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using MaterialDesignThemes.Wpf;
 using SocialMedia.Command;
 using SocialMedia.Models;
 using SocialMedia.Services;
@@ -128,11 +126,11 @@ namespace SocialMedia.ViewModels
         {
             try
             {
-                
+
                 Service s = new Service();
 
                 string username = login.txtUsername.Text;
-                
+
 
                 // Hash password
                 var hasher = new SHA256Managed();
@@ -192,6 +190,7 @@ namespace SocialMedia.ViewModels
         {
             await Task.Delay(250);
             login.Close();
+            LoggedGuest.ID = 0;
         }
 
         private void RegistrationUserExecute()
@@ -219,18 +218,18 @@ namespace SocialMedia.ViewModels
                     Xceed.Wpf.Toolkit.MessageBox.Show("Odaberite pol.", "Pol");
                     return;
                 }
-                
-                string usernamer = login.txtUsernameRegistration.Text;
-                
-                
-                    tblUser userr= s.GetUserUsername(usernamer);
 
-                    if (userr != null)
-                    {
-                        Xceed.Wpf.Toolkit.MessageBox.Show("Korisničko ime je zauzeto, probajte neko drugo.", "Korisničko ime je zauzeto");
-                        return;
-                    }
-                   
+                string usernamer = login.txtUsernameRegistration.Text;
+
+
+                tblUser userr = s.GetUserUsername(usernamer);
+
+                if (userr != null)
+                {
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Korisničko ime je zauzeto, probajte neko drugo.", "Korisničko ime je zauzeto");
+                    return;
+                }
+
 
                 int age = 0;
                 age = DateTime.Now.Year - User.DateOfBirth.Year;
@@ -262,7 +261,7 @@ namespace SocialMedia.ViewModels
             }
 
         }
-            
+
 
         private bool CanRegistrationUserExecute()
         {
@@ -286,7 +285,7 @@ namespace SocialMedia.ViewModels
         private void BackLoginExecute()
         {
             login.CloseDialog();
-            
+
         }
         private bool CanBackLoginExecute()
         {

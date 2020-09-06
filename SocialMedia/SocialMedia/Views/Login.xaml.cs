@@ -72,7 +72,7 @@ namespace SocialMedia.Views
             }
             else
             {
-                txtPassword.BorderBrush = new SolidColorBrush(Color.FromRgb(0,53,133));
+                txtPassword.BorderBrush = new SolidColorBrush(Color.FromRgb(0, 53, 133));
                 txtPassword.Foreground = new SolidColorBrush(Color.FromRgb(0, 53, 133));
                 password = true;
             }
@@ -281,7 +281,7 @@ namespace SocialMedia.Views
             }
             RegistrationOk();
         }
-        
+
         private void DpDateOfBirth_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dpDateOfBirth.Text.ToString() == "")
@@ -320,7 +320,7 @@ namespace SocialMedia.Views
 
         private void RegistrationOk()
         {
-            
+
             if (usernameRegistration == true &&
                 passwordRegistration == true &&
                 name == true &&
@@ -335,6 +335,6 @@ namespace SocialMedia.Views
             }
         }
 
-        
+
     }
 }

@@ -5,11 +5,8 @@ using SocialMedia.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using Xceed.Wpf.Toolkit;
 
 namespace SocialMedia.ViewModels
 {
@@ -102,7 +99,7 @@ namespace SocialMedia.ViewModels
         {
             Service s = new Service();
             PostList = s.GetAllPost();
-            if(PostList.Count > 0)
+            if (PostList.Count > 0)
             {
                 mainWindow.NoPost.Visibility = Visibility.Collapsed;
                 mainWindow.ListviewPost.Visibility = Visibility.Visible;
@@ -120,9 +117,8 @@ namespace SocialMedia.ViewModels
 
             try
             {
-
                 FriendList = s.GetAllUser(LoggedGuest.ID);
-                if(friendList.Count == 1)
+                if (friendList.Count == 1)
                 {
                     mainWindow.ExpanderFriends.Header = $"Ćaskanje ({FriendList.Count()} prijatelj)";
 
@@ -158,7 +154,7 @@ namespace SocialMedia.ViewModels
         {
             Service s = new Service();
 
-            
+
 
             if (mainWindow.cbxSearch.Text == "Ime i prezime" || mainWindow.cbxSearch.Text == "")
             {
@@ -168,7 +164,7 @@ namespace SocialMedia.ViewModels
                     UserListSearchOther = s.GetAllUserNameSurnameOther(mainWindow.txtName.Text, mainWindow.txtSurname.Text);
                     mainWindow.SearchDetail.Text = $"Ime: {mainWindow.txtName.Text} Prezime: {mainWindow.txtSurname.Text}";
                 }
-                else if(mainWindow.txtName.Text != "" && mainWindow.txtSurname.Text == "")
+                else if (mainWindow.txtName.Text != "" && mainWindow.txtSurname.Text == "")
                 {
                     UserListSearch = s.GetAllUserName(mainWindow.txtName.Text);
                     UserListSearchOther = s.GetAllUserNameOther(mainWindow.txtName.Text);
@@ -183,7 +179,7 @@ namespace SocialMedia.ViewModels
 
                 }
             }
-            else if(mainWindow.cbxSearch.Text == "Korisničko ime")
+            else if (mainWindow.cbxSearch.Text == "Korisničko ime")
             {
                 UserListSearch = s.GetAllUserUsername(mainWindow.txtUsername.Text);
                 UserListSearchOther = s.GetAllUserUsernameOther(mainWindow.txtUsername.Text);
@@ -193,7 +189,7 @@ namespace SocialMedia.ViewModels
 
 
 
-            if (UserListSearch.Count== 0)
+            if (UserListSearch.Count == 0)
             {
                 mainWindow.SearchNoData.Visibility = Visibility.Visible;
             }
@@ -205,7 +201,7 @@ namespace SocialMedia.ViewModels
         }
         private bool CanSearchBtnExecute()
         {
-            if(mainWindow.txtUsername.Text != "" || mainWindow.txtName.Text != "" || mainWindow.txtSurname.Text != "")
+            if (mainWindow.txtUsername.Text != "" || mainWindow.txtName.Text != "" || mainWindow.txtSurname.Text != "")
             {
                 return true;
             }
@@ -237,6 +233,8 @@ namespace SocialMedia.ViewModels
         {
             return true;
         }
+
+
 
         private ICommand homeBtn;
         public ICommand HomeBtn
@@ -329,7 +327,7 @@ namespace SocialMedia.ViewModels
             {
                 return;
             }
-            
+
         }
         private bool CanVisiblePostExecute()
         {
