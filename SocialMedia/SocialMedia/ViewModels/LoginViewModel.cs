@@ -190,7 +190,6 @@ namespace SocialMedia.ViewModels
         {
             await Task.Delay(250);
             login.Close();
-            LoggedGuest.ID = 0;
         }
 
         private void RegistrationUserExecute()
