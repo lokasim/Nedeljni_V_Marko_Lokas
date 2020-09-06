@@ -42,5 +42,23 @@ namespace SocialMedia.Models
         public virtual ICollection<tblPost> tblPosts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblPostLike> tblPostLikes { get; set; }
+
+        public string NameSurname
+        {
+            get
+            {
+                return $"{UserSurname} {UserName} >{UserUsername}<";
+            }
+        }
+
+        public string InitialUser
+        {
+            get
+            {
+                char[] first = UserSurname.ToCharArray();
+                char[] second = UserName.ToCharArray();
+                return $"{first[0]}{second[0]}";
+            }
+        }
     }
 }

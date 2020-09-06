@@ -127,69 +127,44 @@ namespace SocialMedia.ViewModels
 
         private void LoginUserExecute()
         {
-            //try
-            //{
-            //    LoginService s = new LoginService();
+            try
+            {
+                Service s = new Service();
 
-            //    string username = login.NameTextBox.Text;
+                string username = login.txtUsername.Text;
+                
 
-            //    //uniqueness check username
-            //    tblUser usertUsername = s.GetUserUsername(username);
+                // Hash password
+                var hasher = new SHA256Managed();
+                var unhashed = Encoding.Unicode.GetBytes(login.txtPassword.Password);
+                var hashed = hasher.ComputeHash(unhashed);
+                var hashedPassword = Convert.ToBase64String(hashed);
 
-            //    // Hash password
-            //    var hasher = new SHA256Managed();
-            //    var unhashed = Encoding.Unicode.GetBytes(login.passwordBox.Password);
-            //    var hashed = hasher.ComputeHash(unhashed);
-            //    var hashedPassword = Convert.ToBase64String(hashed);
+                string password = hashedPassword;
 
-            //    string password = hashedPassword;
+                //Checks if there is a username and password in the database
+                tblUser userLogin = s.GetUsernamePassword(username, password);
 
-            //    //Checks if there is a username and password in the database
-            //    tblUser userLogin = s.GetUsernamePassword(username, password);
+                if (userLogin != null)
+                {
+                    LoggedGuest.Name = userLogin.UserName;
+                    LoggedGuest.Surname = userLogin.UserSurname;
+                    LoggedGuest.Username = userLogin.UserUsername;
+                    LoggedGuest.Birth = userLogin.DateOfBirth.ToString("dd.MM.yyyy");
+                    LoggedGuest.Gendre = userLogin.Gender;
+                    LoggedGuest.ID = userLogin.UserID;
+                    usersLogin = true;
+                    OpenMainMenu();
+                }
+                else
+                {
+                    SnackError();
+                }
+            }
+            catch (Exception)
+            {
 
-            //    if (login.NameTextBox.Text == "Admin" && login.passwordBox.Password == "Admin123")
-            //    {
-            //        login.pnlLoginUser.Visibility = Visibility.Collapsed;
-            //        login.pnlSuccessfulLogin.Visibility = Visibility.Visible;
-            //        LoggedGuest.NameSurname = "Administrator";
-            //        LoggedGuest.Username = login.NameTextBox.ToString();
-            //        LoggedGuest.ID = 0;
-            //        adminLogin = true;
-            //        OpenMainMenu();
-            //        MessageIngredient();
-            //    }
-            //    else if (login.NameTextBox.Text.ToLower() == "admin")
-            //    {
-            //        login.SnackError();
-            //        return;
-            //    }
-            //    else if (userLogin != null)
-            //    {
-            //        LoggedGuest.NameSurname = userLogin.FirstLastName;
-            //        LoggedGuest.Username = userLogin.Username;
-            //        LoggedGuest.ID = userLogin.UserID;
-            //        usersLogin = true;
-            //        login.pnlLoginUser.Visibility = Visibility.Collapsed;
-            //        login.pnlSuccessfulLogin.Visibility = Visibility.Visible;
-            //        OpenMainMenu();
-            //        MessageIngredient();
-            //    }
-            //    else if (usertUsername != null)
-            //    {
-            //        login.SnackError();
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        login.pnlLoginUser.Visibility = Visibility.Collapsed;
-            //        login.pnlRegistrationUser.Visibility = Visibility.Visible;
-            //        login.nameSurnameUser.Focus();
-            //    }
-            //}
-            //catch (Exception)
-            //{
-
-            //}
+            }
         }
 
         private bool CanLoginUserExecute()
@@ -227,10 +202,12 @@ namespace SocialMedia.ViewModels
                 Service s = new Service();
                 // Hash Password
                 var hasher = new SHA256Managed();
-                var unhashed = Encoding.Unicode.GetBytes(login.txtPassword.Password.ToString());
+                var unhashed = Encoding.Unicode.GetBytes(login.txtPasswordRegistration.Password.ToString());
                 var hashed = hasher.ComputeHash(unhashed);
                 var hashedPassword = Convert.ToBase64String(hashed);
-                this.User.UserPassword = hashedPassword;
+
+                string password = hashedPassword;
+                this.User.UserPassword = password;
                 this.User.UserName = login.txtName.Text.ToString();
                 this.User.UserSurname = login.txtSurname.Text.ToString();
                 this.User.UserUsername = login.txtUsernameRegistration.Text.ToString();
@@ -264,7 +241,7 @@ namespace SocialMedia.ViewModels
                 }
                 if (age < 18)
                 {
-                    Xceed.Wpf.Toolkit.MessageBox.Show("Nije moguće registrovati nalog za osobe mlađe od 18 godina.", "Morate imati minimum 18 godina");
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Nije moguće registrovati nalog za osobe mlađe od 18 godina.", "Minimum 18 godina");
                     return;
                 }
 
@@ -272,15 +249,7 @@ namespace SocialMedia.ViewModels
                 if (s.AddUser(User) != null)
                 {
                     IsUpdateUser = true;
-                    usersLogin = true;
-                    login.txtName.Text = "";
-                    login.txtSurname.Text = "";
-                    login.txtUsernameRegistration.Text = "";
-                    login.txtPasswordRegistration.Password = "";
-                    login.dpDateOfBirth.Text = "";
-                    login.cbxGendre.Text = "";
-                    var drawer = DrawerHost.CloseDrawerCommand;
-                    drawer.Execute(null, null);
+                    login.CloseDialog();
                 }
                 else
                 {
@@ -301,11 +270,35 @@ namespace SocialMedia.ViewModels
             return true;
         }
 
-        public async void VisibleLoginFail()
+        private ICommand backToLogin;
+        public ICommand BackToLogin
         {
-            //login.loginFail.Visibility = Visibility.Visible;
-            //await Task.Delay(2000);
-            //login.loginFail.Visibility = Visibility.Collapsed;
+            get
+            {
+                if (backToLogin == null)
+                {
+                    backToLogin = new RelayCommand(param => BackLoginExecute(), param => CanBackLoginExecute());
+                }
+                return backToLogin;
+            }
+        }
+
+        //Return to the login page
+        private void BackLoginExecute()
+        {
+            login.CloseDialog();
+            
+        }
+        private bool CanBackLoginExecute()
+        {
+            return true;
+        }
+
+        public async void SnackError()
+        {
+            login.SnackErrorSNC.IsActive = true;
+            await Task.Delay(3000);
+            login.SnackErrorSNC.IsActive = false;
         }
         #endregion
     }

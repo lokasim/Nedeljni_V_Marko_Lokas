@@ -69,6 +69,25 @@
                                          Height="16"
                                          Width="16" />
             </Button>
+            <materialDesign:Snackbar Grid.Column="0"
+                                     Panel.ZIndex="1"
+                                     IsActive="False"
+                                     x:Name="SnackErrorSNC"
+                                     Background="#FFF34A4A"
+                                     VerticalAlignment="Top"
+                                     Margin="0 0 0 0"
+                                     FontSize="12"
+                                     FontFamily="{DynamicResource MaterialDesignFont}"
+                                     HorizontalAlignment="Center">
+                <materialDesign:SnackbarMessage Content="Nažalost, nismo pronašli korisnika sa unetim korisničkim imenom i lozinkom."
+                                                HorizontalContentAlignment="Center"
+                                                FontSize="20"
+                                                Height="35"
+                                                Width="270"
+                                                FontWeight="Bold"
+                                                Foreground="Black"
+                                                ActionCommand="{Binding SnackError}" />
+            </materialDesign:Snackbar>
             <TextBlock x:Name="tbCapsLock"
                        Grid.Column="0"
                        Grid.Row="1"
@@ -122,6 +141,7 @@
                         Margin="0 25 0 0"
                         Background="#149DE1"
                         FontSize="16"
+                        IsDefault="True"
                         Foreground="#FAFAFA"
                         BorderBrush="#149DE1"
                         materialDesign:ButtonAssist.CornerRadius="5"
@@ -150,7 +170,7 @@
                                         IsCancel="True"
                                         Foreground="Red"
                                         Margin="30 -20 8 0"
-                                        Command="materialDesign:DialogHost.CloseDialogCommand">
+                                        Command="{Binding BackToLogin, UpdateSourceTrigger=PropertyChanged}">
                                     <Button.CommandParameter>
                                         <system:Boolean xmlns:system="clr-namespace:System;assembly=mscorlib">False</system:Boolean>
                                     </Button.CommandParameter>

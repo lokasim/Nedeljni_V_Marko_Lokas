@@ -1,19 +1,12 @@
-﻿using SocialMedia.ViewModels;
+﻿using MaterialDesignThemes.Wpf;
+using SocialMedia.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace SocialMedia.Views
 {
@@ -31,9 +24,6 @@ namespace SocialMedia.Views
             this.Language = XmlLanguage.GetLanguage("sr-SR");
             btnRegistration.IsEnabled = true;
         }
-
-
-
 
         private void DragMe(object sender, MouseButtonEventArgs e)
         {
@@ -316,6 +306,16 @@ namespace SocialMedia.Views
                 gendre = true;
             }
             RegistrationOk();
+        }
+
+        public void CloseDialog()
+        {
+            txtName.Text = "";
+            txtSurname.Text = "";
+            txtUsernameRegistration.Text = "";
+            txtPasswordRegistration.Password = "";
+            cbxGendre.Text = "";
+            DialogHost.CloseDialogCommand.Execute(null, null);
         }
 
         private void RegistrationOk()

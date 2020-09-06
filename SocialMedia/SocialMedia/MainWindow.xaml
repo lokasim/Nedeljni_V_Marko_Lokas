@@ -2,11 +2,430 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SocialMedia"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="BetweenUs"
+        MinHeight="400"
+        MinWidth="900"
+        Height="720"
+        Width="1280"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        MouseLeftButtonDown="DragMe">
+    <Border BorderBrush="#149DE1"
+            BorderThickness="3 0 3 3">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="70"></RowDefinition>
+                <RowDefinition Height="1*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1"
+                        x:Name="SpustiProzor"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        ToolTip="Spusti prozor"
+                        Height="22"
+                        Width="22"
+                        Foreground="Black"
+                        Panel.ZIndex="1"
+                        Margin="0 0 0 0"
+                        Visibility="Visible"
+                        Click="Spusti_prozor"
+                        Background="{x:Null}"
+                        BorderBrush="{x:Null}">
+                    <materialDesign:PackIcon Kind="WindowMinimize"
+                                             Height="16"
+                                             Width="16" />
+                </Button>
+                <Button Grid.Column="2"
+                        x:Name="PovecajProzor1"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        BorderBrush="{x:Null}"
+                        Background="{x:Null}"
+                        Height="22"
+                        Width="22"
+                        Foreground="Black"
+                        Panel.ZIndex="1"
+                        Margin="0,0,-5,5"
+                        Click="Povecaj_prozor"
+                        Visibility="Collapsed">
+                    <materialDesign:PackIcon Kind="WindowMaximize"
+                                             Height="16"
+                                             Width="16" />
+                </Button>
+                <Button Grid.Column="2"
+                        x:Name="PovecajProzor"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        ToolTip="Povećaj prozor"
+                        BorderBrush="{x:Null}"
+                        Background="{x:Null}"
+                        Height="22"
+                        Width="22"
+                        Foreground="Black"
+                        Panel.ZIndex="1"
+                        Margin="0 0 0 0"
+                        Visibility="Visible"
+                        Click="Povecaj_prozor">
+                    <materialDesign:PackIcon Kind="WindowMaximize"
+                                             Height="16"
+                                             Width="16" />
+                </Button>
+                <Button Grid.Column="3"
+                        x:Name="Izlaz"
+                        Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                        ToolTip="Napusti aplikaciju"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        Height="22"
+                        Width="22"
+                        Foreground="Red"
+                        Margin="0 0 0 0"
+                        Visibility="Visible"
+                        Click="Exit">
+                    <materialDesign:PackIcon Kind="WindowClose"
+                                             Height="16"
+                                             Width="16" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Background="#149DE1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="40"
+                               FontWeight="Bold"
+                               FontStyle="Italic"
+                               Foreground="#FEBA02">BetweenUs</TextBlock>
+                </Grid>
+                <Grid Grid.Column="1"></Grid>
+                <Grid Grid.Column="2"></Grid>
+            </Grid>
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="300"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Ellipse Width="200"
+                             Height="200"
+                             Fill="#149DE1"
+                             Stroke="#003585"
+                             VerticalAlignment="Top"
+                             Margin="0 30 0 0"
+                             StrokeThickness="10" />
+                    <TextBlock Panel.ZIndex="1"
+                               x:Name="initials"
+                               VerticalAlignment="Top"
+                               HorizontalAlignment="Center"
+                               Margin="60"
+                               Height="130"
+                               Foreground="#FEBA02"
+                               FontSize="100">LM</TextBlock>
+                    <StackPanel Margin="0 240 0 0">
+                        <StackPanel>
+                            <TextBlock FontSize="25"
+                                       x:Name="tblUsername"
+                                       Foreground="#FEBA02"
+                                       FontStyle="Italic"
+                                       TextDecorations="underline"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center">lokasmarko</TextBlock>
+                        </StackPanel>
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   x:Name="tblSurname"
+                                   FontWeight="Bold"
+                                   FontSize="30"
+                                   Foreground="#003585"
+                                   TextWrapping="Wrap">Lokas</TextBlock>
+                        <TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"
+                                   x:Name="tblName"
+                                   FontSize="30"
+                                   Foreground="#003585"
+                                   FontWeight="Bold"
+                                   TextWrapping="Wrap">Marko</TextBlock>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 5 0 0"
+                                Height="50"
+                                Foreground="#149DE1"
+                                x:Name="btnSeeMore"
+                                Click="BtnSeeMore_Click">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock>Prikaži više</TextBlock>
+                                <materialDesign:PackIcon Kind="ChevronDown"
+                                                         HorizontalAlignment="Center"
+                                                         Height="30"
+                                                         Margin="0 0 0 0"
+                                                         Width="30" />
+                            </StackPanel>
+                        </Button>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 5 0 0"
+                                Visibility="Collapsed"
+                                Height="50"
+                                Foreground="#149DE1"
+                                x:Name="btnSeeLess"
+                                Click="BtnSeeMore_Click">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock>Prikaži manje</TextBlock>
+                                <materialDesign:PackIcon Kind="ChevronUp"
+                                                         HorizontalAlignment="Center"
+                                                         Height="30"
+                                                         Margin="0 0 0 0"
+                                                         Width="30" />
+                            </StackPanel>
+                        </Button>
+                        <StackPanel x:Name="MoreInformation"
+                                    Visibility="Collapsed">
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <TextBlock FontSize="16"
+                                           Foreground="#003585">Pol:</TextBlock>
+                                <TextBlock FontSize="16"
+                                           Foreground="#FEBA02"
+                                           FontWeight="Bold"
+                                           Margin="10 0 0 10"
+                                           x:Name="tblPol">Muški</TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <TextBlock FontSize="16"
+                                           Foreground="#003585">Datum rođenja:</TextBlock>
+                                <TextBlock FontSize="16"
+                                           Foreground="#FEBA02"
+                                           FontWeight="Bold"
+                                           Margin="10 0 0 0"
+                                           x:Name="tblDatum">24.03.1995.</TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                    <Rectangle HorizontalAlignment="Right"
+                               Fill="#149DE1"
+                               Margin="0,0,0,0"
+                               Width="1"
+                               VerticalAlignment="Stretch" />
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="230"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition Height="20"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0"></Grid>
+                        <Grid Grid.Row="1">
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                     x:Name="txtPost"
+                                     VerticalAlignment="Top"
+                                     Margin="25 15 30 0"
+                                     
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     BorderBrush="#003585"
+                                     FontSize="20"
+                                     MaxLength="100"
+                                     Padding="0 0 0 -5"
+                                     Width="auto"
+                                     Height="110"
+                                     ToolTip="Kažite nešto o sebi do 100 karaktera."
+                                     Background="#FAFAFA"
+                                     Foreground="#003585"
+                                     materialDesign:HintAssist.Hint="Napišite nešto o sebi..." />
+                            <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                    Height="45"
+                                    x:Name="btnPost"
+                                    VerticalAlignment="Bottom"
+                                    Width="auto"
+                                    Margin="25 0 30 10"
+                                    Background="#FEBA02"
+                                    FontSize="16"
+                                    IsDefault="True"
+                                    Foreground="White"
+                                    BorderBrush="#FEBA02"
+                                    materialDesign:ButtonAssist.CornerRadius="5"
+                                    Command="{Binding VisiblePost, UpdateSourceTrigger=PropertyChanged}"
+                                    ToolTip="Pritiskom na dugme javno objavite, vaša objava će biti vidljiva svima koji koriste ovu društvenu mrežu.">Javno objavite</Button>
+                        </Grid>
+                        <Grid Grid.Row="2">
+                            <Border BorderBrush="#149DE1"
+                                    BorderThickness="1" VerticalAlignment="Center" Margin="25 0 30 0"/>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Border BorderBrush="#149DE1" BorderThickness="1" VerticalAlignment="Top" Height="150" Margin="25 0 30 0">
+                        <StackPanel>
+                            <Grid Margin="0 0 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="60"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <StackPanel>
+                                    <TextBlock FontSize="20" x:Name="PostUsername" FontWeight="Bold" Foreground="#149DE1">Marko Lokas</TextBlock>
+                                            <TextBlock FontSize="12"
+                                                       HorizontalAlignment="Right"
+                                                       x:Name="PostDate"
+                                                       FontWeight="Light"
+                                                       Foreground="#FEBA02">24.03.1990.</TextBlock>
+                                            <TextBlock FontSize="20"
+                                                       x:Name="PostPost"
+                                                       TextWrapping="Wrap"
+                                                       Foreground="#003585">Neka objava  nesto...</TextBlock>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"></RowDefinition>
+                                        <RowDefinition Height="30"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                    <Grid Grid.Row="1">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#149DE1" x:Name="LikeNumber">100</TextBlock>
+                                    </Grid>
+                                    <Grid Grid.Row="2">
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                    IsDefault="True"
+                                                    Margin="0 0 0 0"
+                                                    Height="50"
+                                                    Foreground="#FEBA02"
+                                                    x:Name="btnLike"
+                                                    Click="BtnSeeMore_Click">
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Kind="ThumbUpOutline"
+                                                                             HorizontalAlignment="Center"
+                                                                             Height="30"
+                                                                             Margin="0 0 0 0"
+                                                                             Width="30" />
+                                                </StackPanel>
+                                            </Button>
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                    IsDefault="True"
+                                                    Margin="0 0 0 0"
+                                                    Height="50"
+                                                    Visibility="Collapsed"
+                                                    Foreground="#003585"
+                                                    x:Name="btnUnLike"
+                                                    Click="BtnSeeMore_Click">
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Kind="ThumbDown"
+                                                                             HorizontalAlignment="Center"
+                                                                             Height="30"
+                                                                             Margin="0 0 0 0"
+                                                                             Width="30" />
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+                                    <Grid Grid.Row="3">
+                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                    IsDefault="True"
+                                                    Margin="0 0 0 0"
+                                                    Height="50"
+                                                    Foreground="#149DE1"
+                                                    x:Name="btnSeeLike"
+                                                    Click="BtnSeeMore_Click">
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <materialDesign:PackIcon Kind="ChevronTripleDown"
+                                                                             HorizontalAlignment="Center"
+                                                                             Height="40"
+                                                                             Margin="0 0 0 0"
+                                                                             Width="40" />
+                                                </StackPanel>
+                                            </Button>
+                                        </Grid>
+                                    </Grid>
+                            </Grid>
+                            
+                            
+                            
+                        </StackPanel>
+                        </Border>
+                        <ListView Grid.Row="1"
+                                  Grid.Column="1"
+                                  Margin="25 0 0 0"
+                                  ItemsSource="{Binding FriendList, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <materialDesign:Chip x:Name="friends"
+                                                             Margin="5 5 0 0"
+                                                             Content="{Binding NameSurname}"
+                                                             Icon="{Binding InitialUser}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        
+                    </Grid>
+                    <Grid Grid.Row="1"
+                          Grid.RowSpan="2"
+                          Background="#FAFAFA">
+                        <StackPanel Margin="2 0 0 0">
+                            <Border BorderBrush="#149DE1"
+                                    BorderThickness="1" />
+                            <Expander HorizontalAlignment="Stretch"
+                                          Background="#FAFAFA"
+                                      x:Name="ExpanderFriends"
+                                          Header="Ćaskanje"
+                                          VerticalAlignment="Stretch"
+                                          IsExpanded="True">
+                                    <ListView Grid.Row="1"
+                                              Grid.Column="1"
+                                              Margin="25 0 0 0"
+                                              ItemsSource="{Binding FriendList, UpdateSourceTrigger=PropertyChanged}">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel>
+                                                    <materialDesign:Chip x:Name="friends"
+                                                                         Margin="5 5 0 0"
+                                                                         Content="{Binding NameSurname}"
+                                                                         Icon="{Binding InitialUser}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </Expander>
+                            </StackPanel>
+                    </Grid>
+                    
+                    <Rectangle HorizontalAlignment="Left" Grid.Row="0" Grid.RowSpan="3"
+                               Fill="#149DE1"
+                               Margin="0,0,0,0"
+                               Width="1"
+                               VerticalAlignment="Stretch" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
 </Window>

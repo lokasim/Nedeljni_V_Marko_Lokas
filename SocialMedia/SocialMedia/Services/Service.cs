@@ -11,6 +11,42 @@ namespace SocialMedia.Services
     class Service
     {
 
+        public List<tblUser> GetAllUser()
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblUser GetAllUserID(int ID)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    tblUser user = (from e in context.tblUsers where e.UserID == ID select e).First();
+                    
+                    return user;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
         public tblUser GetUsernamePassword(string username, string password)
         {
             try
