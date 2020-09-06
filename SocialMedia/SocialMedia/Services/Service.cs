@@ -29,6 +29,35 @@ namespace SocialMedia.Services
             }
         }
 
+        public List<Tuple<string, string, string, string, DateTime>> GetAllPost()
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<Tuple<string, string, string, string, DateTime>> list = new List<Tuple<string, string, string, string, DateTime>>();
+
+                    list = (
+                            from a in context.tblPosts
+                            join c in context.tblUsers
+                            on a.UserPost equals c.UserID
+                            orderby a.DateTimePost descending
+                            select (new { a.PostText, c.UserName, c.UserSurname, c.UserUsername, a.DateTimePost})
+                            )
+                            .AsEnumerable()
+                            .Select(t =>
+                              new Tuple<string, string, string, string, DateTime>(t.PostText, t.UserName, t.UserSurname, t.UserUsername, t.DateTimePost))
+                            .ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
         public tblUser GetAllUserID(int ID)
         {
             try
@@ -67,6 +96,43 @@ namespace SocialMedia.Services
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public tblPost AddPost(tblPost post)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    if (post.PostID == 0)
+                    {
+                        tblPost newPost = new tblPost
+                        {
+                            PostID = post.PostID,
+                            PostText = post.PostText,
+                            DateTimePost = post.DateTimePost,
+                            VisiblePost = post.VisiblePost,
+                            UserPost = post.UserPost
+                        };
+
+                        context.tblPosts.Add(newPost);
+                        context.SaveChanges();
+                        post.PostID = newPost.PostID;
+                        return post;
+                    }
+                    else
+                    {
+                        return null;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+                System.Diagnostics.Debug.WriteLine("Exception: " + ex.Message.ToString());
                 return null;
             }
         }

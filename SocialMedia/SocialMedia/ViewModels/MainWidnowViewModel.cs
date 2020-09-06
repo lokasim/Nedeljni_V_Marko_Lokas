@@ -1,10 +1,13 @@
-﻿using SocialMedia.Models;
+﻿using SocialMedia.Command;
+using SocialMedia.Models;
 using SocialMedia.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Input;
 using Xceed.Wpf.Toolkit;
 
 namespace SocialMedia.ViewModels
@@ -28,16 +31,60 @@ namespace SocialMedia.ViewModels
             }
         }
 
+        private tblPost post;
+        public tblPost Post
+        {
+            get
+            {
+                return post;
+            }
+            set
+            {
+                post = value;
+                OnPropertyChanged("Post");
+            }
+        }
+
+        private List<Tuple<string, string, string, string, DateTime>> postList;
+        public List<Tuple<string, string, string, string, DateTime>> PostList
+        {
+            get
+            {
+                return postList;
+            }
+            set
+            {
+                postList = value;
+                OnPropertyChanged("PostList");
+            }
+        }
+
         public MainWidnowViewModel(MainWindow mainWindow)
         {
             this.mainWindow = mainWindow;
             FriendListChat();
+            PostPost();
+            Post = new tblPost();
+        }
+
+        public void PostPost()
+        {
+            Service s = new Service();
+            PostList = s.GetAllPost();
+            if(PostList.Count > 0)
+            {
+                mainWindow.NoPost.Visibility = Visibility.Collapsed;
+                mainWindow.ListviewPost.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                mainWindow.NoPost.Visibility = Visibility.Visible;
+                mainWindow.ListviewPost.Visibility = Visibility.Collapsed;
+            }
         }
 
         public void FriendListChat()
         {
-            listFr.Add(2);
-            //listFr.Add(3);
             Service s = new Service();
 
             try
@@ -54,21 +101,62 @@ namespace SocialMedia.ViewModels
                     mainWindow.ExpanderFriends.Header = $"Ćaskanje ({FriendList.Count()} prijatelja)";
 
                 }
-                //for (int i = 0; i < listFr.Count; i++)
-                //{
-                //        FriendList.Add((tblUser)s.GetAllUserID(listFr[i]));
-
-
-                //}
-                //friendList.Count();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                Xceed.Wpf.Toolkit.MessageBox.Show(ex.ToString());
+            }
+        }
+
+        
+
+        private ICommand visiblePost;
+        public ICommand VisiblePost
+        {
+            get
+            {
+                if (visiblePost == null)
+                {
+                    visiblePost = new RelayCommand(param => VisiblePostExecute(), param => CanVisiblePostExecute());
+                }
+                return visiblePost;
+            }
+        }
+
+        //Return to the login page
+        private void VisiblePostExecute()
+        {
+            Post = new tblPost();
+            Service s = new Service();
+            Post.PostText = mainWindow.txtPost.Text.ToString();
+            Post.UserPost = LoggedGuest.ID;
+            DateTime now = DateTime.Now;
+            Post.DateTimePost = now;
+            post.VisiblePost = 1;
+
+            if (s.AddPost(Post) != null)
+            {
+                mainWindow.txtPost.Text = "";
+                PostPost();
+            }
+            else
+            {
+                return;
             }
             
+        }
+        private bool CanVisiblePostExecute()
+        {
+            if (mainWindow.txtPost.Text == "")
+            {
+                return false;
+            }
+            else
+            {
+                return true;
 
+            }
         }
     }
 }

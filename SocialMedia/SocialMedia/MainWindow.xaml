@@ -117,7 +117,7 @@
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="300"></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="300"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid Grid.Column="0">
@@ -274,106 +274,128 @@
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
-                        <Border BorderBrush="#149DE1" BorderThickness="1" VerticalAlignment="Top" Height="150" Margin="25 0 30 0">
-                        <StackPanel>
-                            <Grid Margin="0 0 0 0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="60"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid Grid.Column="0">
-                                    <StackPanel>
-                                    <TextBlock FontSize="20" x:Name="PostUsername" FontWeight="Bold" Foreground="#149DE1">Marko Lokas</TextBlock>
-                                            <TextBlock FontSize="12"
-                                                       HorizontalAlignment="Right"
-                                                       x:Name="PostDate"
-                                                       FontWeight="Light"
-                                                       Foreground="#FEBA02">24.03.1990.</TextBlock>
-                                            <TextBlock FontSize="20"
-                                                       x:Name="PostPost"
-                                                       TextWrapping="Wrap"
-                                                       Foreground="#003585">Neka objava  nesto...</TextBlock>
-                                    </StackPanel>
-                                </Grid>
-                                <Grid Grid.Column="1">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20"></RowDefinition>
-                                        <RowDefinition Height="30"></RowDefinition>
-                                        <RowDefinition Height="50"></RowDefinition>
-                                        <RowDefinition Height="50"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                    <Grid Grid.Row="1">
-                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#149DE1" x:Name="LikeNumber">100</TextBlock>
-                                    </Grid>
-                                    <Grid Grid.Row="2">
-                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                    IsDefault="True"
-                                                    Margin="0 0 0 0"
-                                                    Height="50"
-                                                    Foreground="#FEBA02"
-                                                    x:Name="btnLike"
-                                                    Click="BtnSeeMore_Click">
-                                                <StackPanel HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Kind="ThumbUpOutline"
-                                                                             HorizontalAlignment="Center"
-                                                                             Height="30"
-                                                                             Margin="0 0 0 0"
-                                                                             Width="30" />
-                                                </StackPanel>
-                                            </Button>
-                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                    IsDefault="True"
-                                                    Margin="0 0 0 0"
-                                                    Height="50"
-                                                    Visibility="Collapsed"
-                                                    Foreground="#003585"
-                                                    x:Name="btnUnLike"
-                                                    Click="BtnSeeMore_Click">
-                                                <StackPanel HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Kind="ThumbDown"
-                                                                             HorizontalAlignment="Center"
-                                                                             Height="30"
-                                                                             Margin="0 0 0 0"
-                                                                             Width="30" />
-                                                </StackPanel>
-                                            </Button>
-                                        </Grid>
-                                    <Grid Grid.Row="3">
-                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                    IsDefault="True"
-                                                    Margin="0 0 0 0"
-                                                    Height="50"
-                                                    Foreground="#149DE1"
-                                                    x:Name="btnSeeLike"
-                                                    Click="BtnSeeMore_Click">
-                                                <StackPanel HorizontalAlignment="Center">
-                                                    <materialDesign:PackIcon Kind="ChevronTripleDown"
-                                                                             HorizontalAlignment="Center"
-                                                                             Height="40"
-                                                                             Margin="0 0 0 0"
-                                                                             Width="40" />
-                                                </StackPanel>
-                                            </Button>
-                                        </Grid>
-                                    </Grid>
-                            </Grid>
-                            
-                            
-                            
-                        </StackPanel>
-                        </Border>
-                        <ListView Grid.Row="1"
-                                  Grid.Column="1"
-                                  Margin="25 0 0 0"
-                                  ItemsSource="{Binding FriendList, UpdateSourceTrigger=PropertyChanged}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                            <ColumnDefinition Width="0"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="1" FontSize="25" x:Name="NoPost" FontStyle="Italic" Margin="25 0 30 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="#003585">Trenutno nema vidljivih objava, budite Vi prvi koji će objaviti nešto.</TextBlock>
+                        <ListView Grid.Column="1"
+                                  x:Name="ListviewPost"
+                                  Margin="0 0 0 0"
+                                  HorizontalAlignment="Stretch"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ItemsSource="{Binding PostList, UpdateSourceTrigger=PropertyChanged}">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <materialDesign:Chip x:Name="friends"
-                                                             Margin="5 5 0 0"
-                                                             Content="{Binding NameSurname}"
-                                                             Icon="{Binding InitialUser}" />
-                                    </StackPanel>
+                                    <Border BorderBrush="#149DE1"
+                                            BorderThickness="1"
+                                            VerticalAlignment="Top"
+                                            Height="150"
+                                            Margin="0">
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="60"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid Grid.Column="0">
+                                                    <StackPanel>
+                                                        <TextBlock FontSize="20"
+                                                                   x:Name="PostUsername"
+                                                                   FontWeight="Bold"
+                                                                   Margin="10 0 0 0"
+                                                                   Text="{Binding Item4}"
+                                                                   Foreground="#149DE1"></TextBlock>
+                                                        <TextBlock FontSize="12"
+                                                                   HorizontalAlignment="Right"
+                                                                   x:Name="PostDate"
+                                                                   FontWeight="Light"
+                                                                   Margin="0 0 10 0"
+                                                                   Text="{Binding Item5}"
+                                                                   Foreground="#FEBA02"></TextBlock>
+                                                        <TextBlock FontSize="20"
+                                                                   Margin="10 0 10 0"
+                                                                   x:Name="PostPost"
+                                                                   TextWrapping="Wrap"
+                                                                   Text="{Binding Item1}"
+                                                                   Foreground="#003585"></TextBlock>
+                                                    </StackPanel>
+                                                </Grid>
+                                                <Grid Grid.Column="1">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="20"></RowDefinition>
+                                                        <RowDefinition Height="30"></RowDefinition>
+                                                        <RowDefinition Height="50"></RowDefinition>
+                                                        <RowDefinition Height="50"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Rectangle HorizontalAlignment="Left"
+                                                               Grid.Row="0"
+                                                               Grid.RowSpan="4"
+                                                               Fill="#149DE1"
+                                                               Margin="0,0,0,0"
+                                                               Width="1"
+                                                               VerticalAlignment="Stretch" />
+                                                    <Grid Grid.Row="1">
+                                                        <TextBlock HorizontalAlignment="Center"
+                                                                   VerticalAlignment="Center"
+                                                                   Foreground="#149DE1"
+                                                                   x:Name="LikeNumber">100</TextBlock>
+                                                    </Grid>
+                                                    <Grid Grid.Row="2">
+                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                IsDefault="True"
+                                                                Margin="0 0 0 0"
+                                                                Height="50"
+                                                                Foreground="#FEBA02"
+                                                                x:Name="btnLike"
+                                                                Click="BtnSeeMore_Click">
+                                                            <StackPanel HorizontalAlignment="Center">
+                                                                <materialDesign:PackIcon Kind="ThumbUpOutline"
+                                                                                         HorizontalAlignment="Center"
+                                                                                         Height="30"
+                                                                                         Margin="0 0 0 0"
+                                                                                         Width="30" />
+                                                            </StackPanel>
+                                                        </Button>
+                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                IsDefault="True"
+                                                                Margin="0 0 0 0"
+                                                                Height="50"
+                                                                Visibility="Collapsed"
+                                                                Foreground="#003585"
+                                                                x:Name="btnUnLike"
+                                                                Click="BtnSeeMore_Click">
+                                                            <StackPanel HorizontalAlignment="Center">
+                                                                <materialDesign:PackIcon Kind="ThumbDown"
+                                                                                         HorizontalAlignment="Center"
+                                                                                         Height="30"
+                                                                                         Margin="0 0 0 0"
+                                                                                         Width="30" />
+                                                            </StackPanel>
+                                                        </Button>
+                                                    </Grid>
+                                                    <Grid Grid.Row="3">
+                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                IsDefault="True"
+                                                                Margin="0 0 0 0"
+                                                                Height="50"
+                                                                Foreground="#149DE1"
+                                                                x:Name="btnSeeLike"
+                                                                Click="BtnSeeMore_Click">
+                                                            <StackPanel HorizontalAlignment="Center">
+                                                                <materialDesign:PackIcon Kind="ChevronTripleDown"
+                                                                                         HorizontalAlignment="Center"
+                                                                                         Height="40"
+                                                                                         Margin="0 0 0 0"
+                                                                                         Width="40" />
+                                                            </StackPanel>
+                                                        </Button>
+                                                    </Grid>
+                                                </Grid>
+                                            </Grid>
+                                        </StackPanel>
+                                    </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
