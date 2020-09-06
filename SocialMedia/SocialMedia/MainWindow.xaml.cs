@@ -133,5 +133,105 @@ namespace SocialMedia
                 MoreInformation.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void CbxSearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbxSearch.SelectedIndex.ToString() == "0".ToString())
+            {
+                usernamePnl.Visibility = Visibility.Collapsed;
+                imeprezimepnl.Visibility = Visibility.Visible;
+            }
+            else if(cbxSearch.SelectedIndex.ToString() == "1".ToString())
+            {
+                
+                usernamePnl.Visibility = Visibility.Visible;
+                imeprezimepnl.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private void BtnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            LoginViewModel.usersLogin = false;
+            this.Close();
+            Login login = new Login
+            {
+                loggedIn = false
+            };
+
+            MainWindow main = new MainWindow();
+            main.ShowDialog();
+        }
+
+        private void BtnHome_Click(object sender, RoutedEventArgs e)
+        {
+            btnHomeKind.Foreground = new SolidColorBrush(Color.FromRgb(0, 53, 133));
+            btnProfileKind.Foreground = new SolidColorBrush(Colors.White);
+            btnSearchKind.Foreground = new SolidColorBrush(Colors.White);
+            btnFriendRequestKind.Foreground = new SolidColorBrush(Colors.White);
+            FriendRequestPanel.Visibility = Visibility.Collapsed;
+            HomePanel.Visibility = Visibility.Visible;
+            SearchFriendPanel.Visibility = Visibility.Collapsed;
+            txtUsername.Text = "";
+            txtName.Text = "";
+            txtSurname.Text = "";
+            cbxSearch.Text = "";
+
+        }
+
+        private void BtnFriendRequest_Click(object sender, RoutedEventArgs e)
+        {
+            btnFriendRequestKind.Foreground = new SolidColorBrush(Color.FromRgb(0, 53, 133));
+            btnProfileKind.Foreground = new SolidColorBrush(Colors.White);
+            btnSearchKind.Foreground = new SolidColorBrush(Colors.White);
+            btnHomeKind.Foreground = new SolidColorBrush(Colors.White);
+            FriendRequestPanel.Visibility = Visibility.Visible;
+            HomePanel.Visibility = Visibility.Collapsed;
+            SearchFriendPanel.Visibility = Visibility.Collapsed;
+            txtUsername.Text = "";
+            txtName.Text = "";
+            txtSurname.Text = "";
+            cbxSearch.Text = "";
+        }
+
+        private void BtnProfile_Click(object sender, RoutedEventArgs e)
+        {
+            btnProfileKind.Foreground = new SolidColorBrush(Color.FromRgb(0, 53, 133));
+            btnHomeKind.Foreground = new SolidColorBrush(Colors.White);
+            btnSearchKind.Foreground = new SolidColorBrush(Colors.White);
+            btnFriendRequestKind.Foreground = new SolidColorBrush(Colors.White);
+            FriendRequestPanel.Visibility = Visibility.Collapsed;
+            HomePanel.Visibility = Visibility.Visible;
+            SearchFriendPanel.Visibility = Visibility.Collapsed;
+            txtUsername.Text = "";
+            txtName.Text = "";
+            txtSurname.Text = "";
+            cbxSearch.Text = "";
+        }
+
+        private void BtnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            btnSearchKind.Foreground = new SolidColorBrush(Color.FromRgb(0, 53, 133));
+            btnProfileKind.Foreground = new SolidColorBrush(Colors.White);
+            btnHomeKind.Foreground = new SolidColorBrush(Colors.White);
+            btnFriendRequestKind.Foreground = new SolidColorBrush(Colors.White);
+            FriendRequestPanel.Visibility = Visibility.Collapsed;
+            HomePanel.Visibility = Visibility.Collapsed;
+            SearchFriendPanel.Visibility = Visibility.Visible;
+
+        }
+
+        private void BtnLike_Click(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void BtnUnLike_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Flipper_IsFlippedChanged(object sender, RoutedPropertyChangedEventArgs<bool> e)
+        {
+            
+        }
     }
 }

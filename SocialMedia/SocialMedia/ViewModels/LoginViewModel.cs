@@ -124,11 +124,11 @@ namespace SocialMedia.ViewModels
         }
 
         public static bool usersLogin = false;
-
         private void LoginUserExecute()
         {
             try
             {
+                
                 Service s = new Service();
 
                 string username = login.txtUsername.Text;
@@ -190,13 +190,12 @@ namespace SocialMedia.ViewModels
 
         public async void OpenMainMenu()
         {
-            await Task.Delay(1000);
+            await Task.Delay(250);
             login.Close();
         }
 
         private void RegistrationUserExecute()
         {
-
             try
             {
                 Service s = new Service();

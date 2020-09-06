@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="BetweenUs"
         MinHeight="400"
-        MinWidth="900"
+        MinWidth="1200"
         Height="720"
         Width="1280"
         WindowStartupLocation="CenterScreen"
@@ -111,8 +111,211 @@
                                FontStyle="Italic"
                                Foreground="#FEBA02">BetweenUs</TextBlock>
                 </Grid>
-                <Grid Grid.Column="1"></Grid>
-                <Grid Grid.Column="2"></Grid>
+                <Grid Grid.Column="1"
+                      Margin="25 0 30 0">
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+                        <ComboBox x:Name="cbxSearch"
+                                  materialDesign:HintAssist.Hint="Pretraga po"
+                                  Width="150"
+                                  Height="40"
+                                  FontSize="14"
+                                  SelectionChanged="CbxSearch_SelectionChanged"
+                                  BorderBrush="#003585"
+                                  Background="#FAFAFA"
+                                  Foreground="#003585"
+                                  IsEditable="False"
+                                  Padding="10 5 0 0"
+                                  Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                                  SelectedValuePath="Content">
+                            <ComboBoxItem Content="Ime i prezime"></ComboBoxItem>
+                            <ComboBoxItem Content="Korisničko ime"></ComboBoxItem>
+                        </ComboBox>
+                        <StackPanel Orientation="Horizontal"
+                                    x:Name="imeprezimepnl">
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                     x:Name="txtName"
+                                     VerticalAlignment="Top"
+                                     Margin="5 15 0 0"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     BorderBrush="#003585"
+                                     FontSize="14"
+                                     MaxLength="20"
+                                     Padding="0 5 0 -5"
+                                     Width="150"
+                                     Height="40"
+                                     ToolTip="Unesite ime"
+                                     Background="#FAFAFA"
+                                     Foreground="#003585"
+                                     materialDesign:HintAssist.Hint="Ime" />
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                     x:Name="txtSurname"
+                                     VerticalAlignment="Top"
+                                     Margin="5 15 5 0"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     BorderBrush="#003585"
+                                     FontSize="14"
+                                     MaxLength="20"
+                                     Padding="0 5 0 -5"
+                                     Width="150"
+                                     Height="40"
+                                     ToolTip="Unesite prezime"
+                                     Background="#FAFAFA"
+                                     Foreground="#003585"
+                                     materialDesign:HintAssist.Hint="Prezime" />
+                        </StackPanel>
+                        <StackPanel x:Name="usernamePnl"
+                                    Visibility="Collapsed">
+                            <TextBox Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"
+                                     x:Name="txtUsername"
+                                     VerticalAlignment="Top"
+                                     Margin="5 15 5 0"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     BorderBrush="#003585"
+                                     FontSize="14"
+                                     MaxLength="20"
+                                     Padding="0 5 0 -5"
+                                     Width="150"
+                                     Height="40"
+                                     ToolTip="Unesite korisničko ime"
+                                     Background="#FAFAFA"
+                                     Foreground="#003585"
+                                     materialDesign:HintAssist.Hint="korisničko ime" />
+                        </StackPanel>
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 0 0 0"
+                                Height="40"
+                                Padding="-10"
+                                Width="70"
+                                ToolTip="Pronađi prijatelje"
+                                Panel.ZIndex="1"
+                                Foreground="#003585"
+                                Background="Transparent"
+                                x:Name="btnSearch"
+                                Command="{Binding SearchBtn, UpdateSourceTrigger=PropertyChanged}"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                Click="BtnSearch_Click">
+                            <materialDesign:PackIcon Kind="PersonSearchOutline"
+                                                     HorizontalAlignment="Center"
+                                                     Height="40"
+                                                     x:Name="btnSearchKind"
+                                                     Foreground="White"
+                                                     Margin="0 0 0 0"
+                                                     Width="40" />
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 0 0 0"
+                                Height="40"
+                                Padding="-10"
+                                Width="70"
+                                Panel.ZIndex="1"
+                                ToolTip="Početna strana"
+                                Foreground="#003585"
+                                Background="Transparent"
+                                x:Name="btnHome"
+                                Command="{Binding HomeBtn, UpdateSourceTrigger=PropertyChanged}"
+                                
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                Click="BtnHome_Click">
+                            <materialDesign:PackIcon Kind="Home"
+                                                     HorizontalAlignment="Center"
+                                                     Height="40"
+                                                     x:Name="btnHomeKind"
+                                                     Foreground="#003585"
+                                                     Margin="0 0 0 0"
+                                                     Width="40" />
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <materialDesign:Badged Badge="0"
+                                               Padding="0 0 -10 0"
+                                               Margin="0 15 0 0">
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                    IsDefault="True"
+                                    Margin="0 0 0 0"
+                                    Height="40"
+                                    Padding="-10"
+                                    Width="70"
+                                    Panel.ZIndex="1"
+                                    Command="{Binding FriendRequestBtn, UpdateSourceTrigger=PropertyChanged}"
+                                    Foreground="#003585"
+                                    ToolTip="Zahtevi za prijateljstvo"
+                                    Background="Transparent"
+                                    x:Name="btnFriendRequest"
+                                    materialDesign:ButtonAssist.CornerRadius="5"
+                                    Click="BtnFriendRequest_Click">
+                                <materialDesign:PackIcon Kind="People"
+                                                         x:Name="btnFriendRequestKind"
+                                                         HorizontalAlignment="Center"
+                                                         Height="40"
+                                                         Foreground="White"
+                                                         Margin="0 0 0 0"
+                                                         Width="40" />
+                            </Button>
+                        </materialDesign:Badged>
+                    </Grid>
+                    <Grid Grid.Column="2">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 0 0 0"
+                                Height="40"
+                                Padding="-10"
+                                Width="70"
+                                Panel.ZIndex="1"
+                                Foreground="#003585"
+                                Background="Transparent"
+                                x:Name="btnProfile"
+                                ToolTip="Moj profil"
+                                Command="{Binding MyProfileBtn, UpdateSourceTrigger=PropertyChanged}"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                Click="BtnProfile_Click">
+                            <materialDesign:PackIcon Kind="PersonCircle"
+                                                     HorizontalAlignment="Center"
+                                                     Height="40"
+                                                     x:Name="btnProfileKind"
+                                                     Foreground="White"
+                                                     Margin="0 0 0 0"
+                                                     Width="40" />
+                        </Button>
+                    </Grid>
+                    <Grid Grid.Column="3">
+                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                IsDefault="True"
+                                Margin="0 0 0 0"
+                                Height="40"
+                                Padding="-10"
+                                Width="70"
+                                Panel.ZIndex="1"
+                                ToolTip="Odjavi me"
+                                Foreground="#003585"
+                                Background="Transparent"
+                                x:Name="btnLogout"
+                                materialDesign:ButtonAssist.CornerRadius="5"
+                                Click="BtnLogout_Click">
+                            <materialDesign:PackIcon Kind="Logout"
+                                                     HorizontalAlignment="Center"
+                                                     Height="40"
+                                                     Foreground="White"
+                                                     Margin="0 0 0 0"
+                                                     Width="40" />
+                        </Button>
+                    </Grid>
+                </Grid>
             </Grid>
             <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -223,7 +426,191 @@
                                Width="1"
                                VerticalAlignment="Stretch" />
                 </Grid>
-                <Grid Grid.Column="1">
+                <Grid Grid.Column="1" x:Name="FriendRequestPanel" Visibility="Collapsed">
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0 50" Foreground="#FEBA02" FontWeight="Bold">Trenutno nema primljenih zahteva za prijateljstvo</TextBlock>
+                </Grid>
+                <Grid Grid.Column="1" x:Name="SearchFriendPanel" Visibility="Collapsed" Margin="25 30 30 30">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition Height="1*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Foreground="#003585" FontSize="25">Pretraga:</TextBlock>
+                            <TextBlock Foreground="#FEBA02"
+                                       x:Name="SearchDetail"
+                                       Margin="5 0 0 0"
+                                       FontSize="25"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Foreground="#FEBA02"
+                                   x:Name="SearchNoData"
+                                   Visibility="Collapsed"
+                                   Margin="5 35 0 0"
+                                   FontSize="25">Nema podataka</TextBlock>
+                    </Grid>
+                    <Grid Grid.Row="1">
+                        <Rectangle Fill="#149DE1"
+                                   Margin="10,0,10,0"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Stretch"
+                                   Height="1" />
+                        <Rectangle Fill="#149DE1"
+                                   Margin="10,35,10,0"
+                                   VerticalAlignment="Top"
+                                   HorizontalAlignment="Stretch"
+                                   Height="1" />
+                        <TextBlock FontSize="20" HorizontalAlignment="Center" Foreground="#003585" FontWeight="Bold">- Osobe koje možda pozajete -</TextBlock>
+                        <ListView Grid.Column="1"
+                                  x:Name="ListviewSearchFriendOther"
+                                  Margin="0 40 0 0"
+                                  HorizontalContentAlignment="Stretch"
+                                  HorizontalAlignment="Stretch"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  ItemsSource="{Binding UserListSearchOther, UpdateSourceTrigger=PropertyChanged}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border BorderBrush="#149DE1"
+                                            BorderThickness="1"
+                                            VerticalAlignment="Top"
+                                            Height="100"
+                                            Width="auto"
+                                            Margin="0">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                <ColumnDefinition Width="60"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0"
+                                                  HorizontalAlignment="Stretch">
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <materialDesign:Chip x:Name="friends"
+                                                                         Margin="25 10 0 0"
+                                                                         Width="55"
+                                                                         Padding="10 0 0 0"
+                                                                         Height="55"
+                                                                         Icon="{Binding InitialUser}" />
+                                                </StackPanel>
+                                                <StackPanel Width="180"
+                                                            Height="50"
+                                                            Margin="10 10 0 0"
+                                                            HorizontalAlignment="Right">
+                                                    <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+                                                        <materialDesign:Flipper.FrontContent>
+                                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                    FontSize="20"
+                                                                    Height="40"
+                                                                    Padding="-10"
+                                                                    Margin="0">Pošalji zahtev</Button>
+                                                        </materialDesign:Flipper.FrontContent>
+                                                        <materialDesign:Flipper.BackContent>
+                                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                    FontSize="20"
+                                                                    Foreground="#003585"
+                                                                    Height="40"
+                                                                    Padding="-10"
+                                                                    Margin="0">Otkaži zahtev</Button>
+                                                        </materialDesign:Flipper.BackContent>
+                                                    </materialDesign:Flipper>
+                                                </StackPanel>
+                                                <StackPanel VerticalAlignment="Center">
+                                                    <TextBlock FontSize="20"
+                                                               x:Name="SearchNameSurname"
+                                                               FontWeight="Bold"
+                                                               Margin="100 10 0 0"
+                                                               Text="{Binding NameSurnameSearch}"
+                                                               Foreground="#149DE1"></TextBlock>
+                                                    <TextBlock FontSize="20"
+                                                               x:Name="SearchUsername"
+                                                               FontWeight="Light"
+                                                               Margin="100 5 0 0"
+                                                               Text="{Binding UserUsername}"
+                                                               Foreground="#FEBA02"></TextBlock>
+                                                </StackPanel>
+                                            </Grid>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                    <ListView Grid.Column="1"
+                              x:Name="ListviewSearchFriend"
+                              Margin="0 40 0 0"
+                              HorizontalContentAlignment="Stretch"
+                              HorizontalAlignment="Stretch"
+                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                              ItemsSource="{Binding UserListSearch, UpdateSourceTrigger=PropertyChanged}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate >
+                                <Border BorderBrush="#149DE1"
+                                        BorderThickness="1"
+                                        VerticalAlignment="Top"
+                                        Height="100"
+                                        Width="auto"
+                                        Margin="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                            <ColumnDefinition Width="60"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid Grid.Column="0"
+                                              HorizontalAlignment="Stretch">
+                                            <StackPanel VerticalAlignment="Center">
+                                                <materialDesign:Chip x:Name="friends"
+                                                                     Margin="25 10 0 0"
+                                                                     Width="55"
+                                                                     Padding="10 0 0 0"
+                                                                     Height="55"
+                                                                     Icon="{Binding InitialUser}" />
+                                            </StackPanel>
+                                            <StackPanel Width="180"
+                                                        Height="50"
+                                                        Margin="10 10 0 0"
+                                                        HorizontalAlignment="Right">
+                                                <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}">
+                                                    <materialDesign:Flipper.FrontContent>
+                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                FontSize="20"
+                                                                Height="40"
+                                                                Padding="-10"
+                                                                Margin="0">Pošalji zahtev</Button>
+                                                    </materialDesign:Flipper.FrontContent>
+                                                    <materialDesign:Flipper.BackContent>
+                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                FontSize="20"
+                                                                Foreground="#003585"
+                                                                Height="40"
+                                                                Padding="-10"
+                                                                Margin="0">Otkaži zahtev</Button>
+                                                    </materialDesign:Flipper.BackContent>
+                                                </materialDesign:Flipper>
+                                            </StackPanel>
+                                            <StackPanel VerticalAlignment="Center">
+                                                <TextBlock FontSize="20"
+                                                           x:Name="SearchNameSurname"
+                                                           FontWeight="Bold"
+                                                           Margin="100 10 0 0"
+                                                           Text="{Binding NameSurnameSearch}"
+                                                           Foreground="#149DE1"></TextBlock>
+                                                <TextBlock FontSize="20"
+                                                           x:Name="SearchUsername"
+                                                           FontWeight="Light"
+                                                           Margin="100 5 0 0"
+                                                           Text="{Binding UserUsername}"
+                                                           Foreground="#FEBA02"></TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                <Grid Grid.Column="1" x:Name="HomePanel" Visibility="Visible">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="230"></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -240,7 +627,6 @@
                                      x:Name="txtPost"
                                      VerticalAlignment="Top"
                                      Margin="25 15 30 0"
-                                     
                                      AcceptsReturn="True"
                                      TextWrapping="Wrap"
                                      BorderBrush="#003585"
@@ -264,25 +650,37 @@
                                     IsDefault="True"
                                     Foreground="White"
                                     BorderBrush="#FEBA02"
-                                    materialDesign:ButtonAssist.CornerRadius="5"
+                                    materialDesign:ButtonAssist.CornerRadius="0 0 10 10"
                                     Command="{Binding VisiblePost, UpdateSourceTrigger=PropertyChanged}"
                                     ToolTip="Pritiskom na dugme javno objavite, vaša objava će biti vidljiva svima koji koriste ovu društvenu mrežu.">Javno objavite</Button>
                         </Grid>
                         <Grid Grid.Row="2">
                             <Border BorderBrush="#149DE1"
-                                    BorderThickness="1" VerticalAlignment="Center" Margin="25 0 30 0"/>
+                                    BorderThickness="1"
+                                    VerticalAlignment="Center"
+                                    Margin="25 0 30 0" />
                         </Grid>
                     </Grid>
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="25"></ColumnDefinition>
                             <ColumnDefinition Width="1*"></ColumnDefinition>
-                            <ColumnDefinition Width="0"></ColumnDefinition>
+                            <ColumnDefinition Width="30"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="1" FontSize="25" x:Name="NoPost" FontStyle="Italic" Margin="25 0 30 0" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Foreground="#003585">Trenutno nema vidljivih objava, budite Vi prvi koji će objaviti nešto.</TextBlock>
+                        
+                        <TextBlock Grid.Column="1"
+                                   FontSize="25"
+                                   x:Name="NoPost"
+                                   FontStyle="Italic"
+                                   Margin="25 0 30 0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   TextWrapping="Wrap"
+                                   Foreground="#003585">Trenutno nema vidljivih objava, budite Vi prvi koji će objaviti nešto.</TextBlock>
                         <ListView Grid.Column="1"
                                   x:Name="ListviewPost"
                                   Margin="0 0 0 0"
+                                  HorizontalContentAlignment="Stretch"
                                   HorizontalAlignment="Stretch"
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                   ItemsSource="{Binding PostList, UpdateSourceTrigger=PropertyChanged}">
@@ -291,110 +689,121 @@
                                     <Border BorderBrush="#149DE1"
                                             BorderThickness="1"
                                             VerticalAlignment="Top"
-                                            Height="150"
+                                            Height="130"
+                                            Width="auto"
                                             Margin="0">
-                                        <StackPanel>
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"></ColumnDefinition>
-                                                    <ColumnDefinition Width="60"></ColumnDefinition>
-                                                </Grid.ColumnDefinitions>
-                                                <Grid Grid.Column="0">
-                                                    <StackPanel>
-                                                        <TextBlock FontSize="20"
-                                                                   x:Name="PostUsername"
-                                                                   FontWeight="Bold"
-                                                                   Margin="10 0 0 0"
-                                                                   Text="{Binding Item4}"
-                                                                   Foreground="#149DE1"></TextBlock>
-                                                        <TextBlock FontSize="12"
-                                                                   HorizontalAlignment="Right"
-                                                                   x:Name="PostDate"
-                                                                   FontWeight="Light"
-                                                                   Margin="0 0 10 0"
-                                                                   Text="{Binding Item5}"
-                                                                   Foreground="#FEBA02"></TextBlock>
-                                                        <TextBlock FontSize="20"
-                                                                   Margin="10 0 10 0"
-                                                                   x:Name="PostPost"
-                                                                   TextWrapping="Wrap"
-                                                                   Text="{Binding Item1}"
-                                                                   Foreground="#003585"></TextBlock>
-                                                    </StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                <ColumnDefinition Width="60"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid Grid.Column="0"
+                                                  HorizontalAlignment="Stretch">
+                                                <TextBlock FontSize="20"
+                                                           x:Name="PostUsername"
+                                                           FontWeight="Bold"
+                                                           Margin="10 10 0 0"
+                                                           Text="{Binding Item4}"
+                                                           Foreground="#149DE1"></TextBlock>
+                                                <TextBlock FontSize="12"
+                                                           HorizontalAlignment="Right"
+                                                           x:Name="PostDate"
+                                                           FontWeight="Light"
+                                                           Margin="0 15 10 0"
+                                                           Text="{Binding Item5}"
+                                                           Foreground="#003585"></TextBlock>
+                                                <Rectangle Fill="#149DE1"
+                                                           Margin="10,35,10,0"
+                                                           VerticalAlignment="Top"
+                                                           HorizontalAlignment="Stretch"
+                                                           Height="1" />
+                                                <TextBlock FontSize="20"
+                                                           Margin="10 40 10 0"
+                                                           x:Name="PostPost"
+                                                           HorizontalAlignment="Stretch"
+                                                           TextWrapping="Wrap"
+                                                           Text="{Binding Item1}"
+                                                           Foreground="#003585"></TextBlock>
+                                            </Grid>
+                                            <Grid Grid.Column="1">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30"></RowDefinition>
+                                                    <RowDefinition Height="50"></RowDefinition>
+                                                    <RowDefinition Height="50"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Rectangle HorizontalAlignment="Left"
+                                                           Grid.Row="0"
+                                                           Grid.RowSpan="4"
+                                                           Fill="#149DE1"
+                                                           Margin="0,0,0,0"
+                                                           Width="1"
+                                                           VerticalAlignment="Stretch" />
+                                                <Grid Grid.Row="0">
+                                                    <TextBlock HorizontalAlignment="Center"
+                                                               VerticalAlignment="Center"
+                                                               Foreground="#149DE1"
+                                                               x:Name="LikeNumber">100</TextBlock>
                                                 </Grid>
-                                                <Grid Grid.Column="1">
-                                                    <Grid.RowDefinitions>
-                                                        <RowDefinition Height="20"></RowDefinition>
-                                                        <RowDefinition Height="30"></RowDefinition>
-                                                        <RowDefinition Height="50"></RowDefinition>
-                                                        <RowDefinition Height="50"></RowDefinition>
-                                                    </Grid.RowDefinitions>
-                                                    <Rectangle HorizontalAlignment="Left"
-                                                               Grid.Row="0"
-                                                               Grid.RowSpan="4"
-                                                               Fill="#149DE1"
-                                                               Margin="0,0,0,0"
-                                                               Width="1"
-                                                               VerticalAlignment="Stretch" />
-                                                    <Grid Grid.Row="1">
-                                                        <TextBlock HorizontalAlignment="Center"
-                                                                   VerticalAlignment="Center"
-                                                                   Foreground="#149DE1"
-                                                                   x:Name="LikeNumber">100</TextBlock>
-                                                    </Grid>
-                                                    <Grid Grid.Row="2">
-                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                                IsDefault="True"
-                                                                Margin="0 0 0 0"
-                                                                Height="50"
-                                                                Foreground="#FEBA02"
-                                                                x:Name="btnLike"
-                                                                Click="BtnSeeMore_Click">
-                                                            <StackPanel HorizontalAlignment="Center">
-                                                                <materialDesign:PackIcon Kind="ThumbUpOutline"
-                                                                                         HorizontalAlignment="Center"
-                                                                                         Height="30"
-                                                                                         Margin="0 0 0 0"
-                                                                                         Width="30" />
-                                                            </StackPanel>
-                                                        </Button>
-                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                                IsDefault="True"
-                                                                Margin="0 0 0 0"
-                                                                Height="50"
-                                                                Visibility="Collapsed"
-                                                                Foreground="#003585"
-                                                                x:Name="btnUnLike"
-                                                                Click="BtnSeeMore_Click">
-                                                            <StackPanel HorizontalAlignment="Center">
-                                                                <materialDesign:PackIcon Kind="ThumbDown"
-                                                                                         HorizontalAlignment="Center"
-                                                                                         Height="30"
-                                                                                         Margin="0 0 0 0"
-                                                                                         Width="30" />
-                                                            </StackPanel>
-                                                        </Button>
-                                                    </Grid>
-                                                    <Grid Grid.Row="3">
-                                                        <Button Style="{StaticResource MaterialDesignFlatButton}"
-                                                                IsDefault="True"
-                                                                Margin="0 0 0 0"
-                                                                Height="50"
-                                                                Foreground="#149DE1"
-                                                                x:Name="btnSeeLike"
-                                                                Click="BtnSeeMore_Click">
-                                                            <StackPanel HorizontalAlignment="Center">
-                                                                <materialDesign:PackIcon Kind="ChevronTripleDown"
-                                                                                         HorizontalAlignment="Center"
-                                                                                         Height="40"
-                                                                                         Margin="0 0 0 0"
-                                                                                         Width="40" />
-                                                            </StackPanel>
-                                                        </Button>
-                                                    </Grid>
+                                                <Grid Grid.Row="1">
+                                                    <materialDesign:Flipper Style="{StaticResource MaterialDesignCardFlipper}"
+                                                                            >
+                                                        <materialDesign:Flipper.FrontContent>
+                                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                    x:Name="btnLike"
+                                                                    Margin="0 0 0 0"
+                                                                    Height="50"
+                                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                    Foreground="#149de1"
+                                                                    Click="BtnLike_Click">
+                                                                <StackPanel HorizontalAlignment="Center">
+                                                                    <materialDesign:PackIcon Kind="ThumbUpOutline"
+                                                                                             HorizontalAlignment="Center"
+                                                                                             Height="30"
+                                                                                             Margin="0 0 0 0"
+                                                                                             Width="30" />
+                                                                </StackPanel>
+                                                            </Button>
+                                                        </materialDesign:Flipper.FrontContent>
+                                                        <materialDesign:Flipper.BackContent>
+                                                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                                    Margin="0 0 0 0"
+                                                                    Height="50"
+                                                                    Visibility="Visible"
+                                                                    Foreground="#FEBA02"
+                                                                    Command="{x:Static materialDesign:Flipper.FlipCommand}"
+                                                                    x:Name="btnUnLike"
+                                                                    Click="BtnUnLike_Click">
+                                                                <StackPanel HorizontalAlignment="Center">
+                                                                    <materialDesign:PackIcon Kind="ThumbUp"
+                                                                                             HorizontalAlignment="Center"
+                                                                                             Height="30"
+                                                                                             Margin="0 0 0 0"
+                                                                                             Width="30" />
+                                                                </StackPanel>
+                                                            </Button>
+                                                        </materialDesign:Flipper.BackContent>
+                                                    </materialDesign:Flipper>
+                                                   
+                                                </Grid>
+                                                <Grid Grid.Row="2">
+                                                    <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                                            IsDefault="True"
+                                                            Margin="0 0 0 0"
+                                                            Height="50"
+                                                            Foreground="#149DE1"
+                                                            x:Name="btnSeeLike"
+                                                            Click="BtnSeeMore_Click">
+                                                        <StackPanel HorizontalAlignment="Center">
+                                                            <materialDesign:PackIcon Kind="ChevronTripleDown"
+                                                                                     HorizontalAlignment="Center"
+                                                                                     Height="40"
+                                                                                     Margin="0 0 0 0"
+                                                                                     Width="40" />
+                                                        </StackPanel>
+                                                    </Button>
                                                 </Grid>
                                             </Grid>
-                                        </StackPanel>
+                                        </Grid>
                                     </Border>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
@@ -408,40 +817,52 @@
                         <RowDefinition></RowDefinition>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        
+                        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock FontSize="18" Foreground="#003585" HorizontalAlignment="Center">Mesto za vašu reklamu</TextBlock>
+                            <TextBlock FontSize="18" HorizontalAlignment="Center"
+                                       Foreground="#FEBA02">Kontakt:</TextBlock>
+                            <TextBlock FontSize="18"
+                                       Foreground="#FEBA02"
+                                       HorizontalAlignment="Center">email@panonit.com</TextBlock>
+                            <TextBlock FontSize="18"
+                                       Foreground="#149DE1" Margin="20"
+                                       HorizontalAlignment="Center" FontWeight="Bold">Nedeljni_V_Marko_Lokas</TextBlock>
+                        </StackPanel>
                     </Grid>
                     <Grid Grid.Row="1"
                           Grid.RowSpan="2"
+                          VerticalAlignment="Stretch"
                           Background="#FAFAFA">
-                        <StackPanel Margin="2 0 0 0">
-                            <Border BorderBrush="#149DE1"
-                                    BorderThickness="1" />
-                            <Expander HorizontalAlignment="Stretch"
-                                          Background="#FAFAFA"
-                                      x:Name="ExpanderFriends"
-                                          Header="Ćaskanje"
-                                          VerticalAlignment="Stretch"
-                                          IsExpanded="True">
-                                    <ListView Grid.Row="1"
-                                              Grid.Column="1"
-                                              Margin="25 0 0 0"
-                                              ItemsSource="{Binding FriendList, UpdateSourceTrigger=PropertyChanged}">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <StackPanel>
-                                                    <materialDesign:Chip x:Name="friends"
-                                                                         Margin="5 5 0 0"
-                                                                         Content="{Binding NameSurname}"
-                                                                         Icon="{Binding InitialUser}" />
-                                                </StackPanel>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </Expander>
-                            </StackPanel>
+                        <Border BorderBrush="#149DE1"
+                                BorderThickness="1" />
+                        <Expander HorizontalAlignment="Stretch"
+                                  Background="#FAFAFA"
+                                  x:Name="ExpanderFriends"
+                                  Header="Ćaskanje"
+                                  Margin="2 0 0 0"
+                                  VerticalAlignment="Stretch"
+                                  IsExpanded="True">
+                            <ListView Grid.Row="1"
+                                      VerticalAlignment="Stretch"
+                                      Grid.Column="1"
+                                      Margin="15 0 0 0"
+                                      ItemsSource="{Binding FriendList, UpdateSourceTrigger=PropertyChanged}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <materialDesign:Chip x:Name="friends"
+                                                                 Margin="5 3 0 0"
+                                                                 Content="{Binding NameSurname}"
+                                                                 Icon="{Binding InitialUser}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Expander>
                     </Grid>
-                    
-                    <Rectangle HorizontalAlignment="Left" Grid.Row="0" Grid.RowSpan="3"
+                    <Rectangle HorizontalAlignment="Left"
+                               Grid.Row="0"
+                               Grid.RowSpan="3"
                                Fill="#149DE1"
                                Margin="0,0,0,0"
                                Width="1"

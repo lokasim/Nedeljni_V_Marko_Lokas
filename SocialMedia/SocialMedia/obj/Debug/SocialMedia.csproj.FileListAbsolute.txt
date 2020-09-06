@@ -22,7 +22,6 @@ C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debu
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia.csprojAssemblyReference.cache
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\MainWindow.g.cs
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\App.g.cs
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia_MarkupCompile.cache
@@ -43,3 +42,5 @@ C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debu
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\EntityFramework.xml
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\Views\Login.baml
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\SocialMedia.csprojAssemblyReference.cache
+C:\Users\panonit\Desktop\Nedeljni_V_Marko_Lokas\SocialMedia\SocialMedia\obj\Debug\GeneratedInternalTypeHelper.g.cs

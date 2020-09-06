@@ -11,14 +11,158 @@ namespace SocialMedia.Services
     class Service
     {
 
-        public List<tblUser> GetAllUser()
+        public List<tblUser> GetAllUser(int id)
         {
             try
             {
                 using (BetweenUsEntities context = new BetweenUsEntities())
                 {
                     List<tblUser> list = new List<tblUser>();
-                    list = (from e in context.tblUsers select e).ToList();
+                    list = (from e in context.tblUsers where e.UserID != id orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserNameOther(string name)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserName != name orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserName(string name)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserName == name orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserSurnameOther(string surname)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserSurname != surname orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserSurname(string surname)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserSurname == surname orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserUsernameOther(string username)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserUsername != username orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserUsername(string username)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserUsername == username orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserNameSurnameOther(string name, string surname)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserName != name where e.UserSurname != surname orderby e.UserUsername ascending select e).ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<tblUser> GetAllUserNameSurname(string name, string surname)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<tblUser> list = new List<tblUser>();
+                    list = (from e in context.tblUsers where e.UserName == name where e.UserSurname == surname orderby e.UserUsername ascending select e).ToList();
                     return list;
                 }
             }
@@ -43,6 +187,36 @@ namespace SocialMedia.Services
                             on a.UserPost equals c.UserID
                             orderby a.DateTimePost descending
                             select (new { a.PostText, c.UserName, c.UserSurname, c.UserUsername, a.DateTimePost})
+                            )
+                            .AsEnumerable()
+                            .Select(t =>
+                              new Tuple<string, string, string, string, DateTime>(t.PostText, t.UserName, t.UserSurname, t.UserUsername, t.DateTimePost))
+                            .ToList();
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Exception" + ex.Message.ToString());
+                return null;
+            }
+        }
+
+        public List<Tuple<string, string, string, string, DateTime>> GetMyPost(int id)
+        {
+            try
+            {
+                using (BetweenUsEntities context = new BetweenUsEntities())
+                {
+                    List<Tuple<string, string, string, string, DateTime>> list = new List<Tuple<string, string, string, string, DateTime>>();
+
+                    list = (
+                            from a in context.tblPosts
+                            join c in context.tblUsers
+                            on a.UserPost equals c.UserID
+                            where c.UserID == id
+                            orderby a.DateTimePost descending
+                            select (new { a.PostText, c.UserName, c.UserSurname, c.UserUsername, a.DateTimePost })
                             )
                             .AsEnumerable()
                             .Select(t =>

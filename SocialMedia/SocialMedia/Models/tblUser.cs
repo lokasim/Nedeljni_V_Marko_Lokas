@@ -51,6 +51,14 @@ namespace SocialMedia.Models
             }
         }
 
+        public string NameSurnameSearch
+        {
+            get
+            {
+                return $"{UserSurname} {UserName}";
+            }
+        }
+
         public string InitialUser
         {
             get
